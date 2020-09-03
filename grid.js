@@ -1,106 +1,245 @@
-const numRows = 6 
-const numColumns = 7
-let isBlue = true
-let squareColor = "blue"
-let buttonPressed = false
-let currentRow = 7
+const numRows = 6;
+const numColumns = 7;
+let isBlue = true;
+let squareColor = 'blue';
+let buttonPressed = false;
+let currentRow = 7;
+let currentColumn = 0;
+let col0Row = 5;
+let col1Row = 5;
+let col2Row = 5;
+let col3Row = 5;
+let col4Row = 5;
+let col5Row = 5;
+let col6Row = 5;
+let color = 'white';
+const boardArray = [[null, null, null, null, null, null, null],
+  [null, null, null, null, null, null, null],
+  [null, null, null, null, null, null, null],
+  [null, null, null, null, null, null, null],
+  [null, null, null, null, null, null, null],
+  [null, null, null, null, null, null, null]];
 
+function changeColor(color) {
+  if (color === 'red') {
+    color = 'yellow';
+  } else {
+    color = 'red';
+  }
+  return color;
+}
 function createRow() {
-    const row = document.createElement("tr")
-    return row
+  const row = document.createElement('tr');
+  return row;
 }
 
 function createCell(squareColor) {
-    const cell = document.createElement("td")
+  const cell = document.createElement('td');
 
-    cell.style.height = "100px"
-    cell.style.width = "100px"
-    cell.style.backgroundColor = squareColor
+  cell.style.height = '100px';
+  cell.style.width = '100px';
+  cell.style.backgroundColor = squareColor;
 
-    createCircle()
+  createCircle();
 
-    return cell
+  return cell;
 }
 
-function createCircle() {
-    const circle = document.createElement("td")
-    circle.style.display = "block"
-    circle.style.margin = "0 auto"
-    circle.style.height = "50px"
-    circle.style.width = "50px"
-    circle.style.borderRadius = "50%"
-    circle.style.backgroundColor = "white"
+function createCircle(circleid) {
+  const circle = document.createElement('td');
+  circle.style.display = 'block';
+  circle.style.margin = '0 auto';
+  circle.style.height = '50px';
+  circle.style.width = '50px';
+  circle.style.borderRadius = '50%';
+  circle.style.backgroundColor = color;
 
+  circle.id = circleid;
 
-    return circle
+  return circle;
 }
 
-const board = document.getElementById("board")
+const board = document.getElementById('board');
 
-const button0Press = document.getElementById('button0');
-button0.onclick = function() {
-    console.log('Hello 0');
-    buttonPressed = true
-    currentRow = 0
-}
-const button1Press = document.getElementById('button1');
-button1.onclick = function() {
-    console.log('Hello 1');
-    buttonPressed = true
-    currentRow = 1
-}
-const button2Press = document.getElementById('button2');
-button2.onclick = function() {
-    console.log('Hello 2');
-    buttonPressed = true
-    currentRow = 2
-}
-const button3Press = document.getElementById('button3');
-button3.onclick = function() {
-    console.log('Hello 3');
-    buttonPressed = true
-    currentRow = 3
-}
-const button4Press = document.getElementById('button4');
-button4.onclick = function() {
-    console.log('Hello 4');
-    buttonPressed = true
-    currentRow = 4
-}
-const button5Press = document.getElementById('button5');
-button5.onclick = function() {
-    console.log('Hello 5');
-    buttonPressed = true
-    currentRow = 5
-}
-const button6Press = document.getElementById('button6');
-button6.onclick = function() {
-    console.log('Hello 6');
-    buttonPressed = true
-    currentRow = 6
+$('#button0').click(() => {
+  console.log('Hello 0');
+  buttonPressed = true;
+  currentColumn = 0;
+  buttonPressedLog();
 
-}
+  return currentColumn;
+});
+$('#button1').click(() => {
+  console.log('Hello 1');
+  buttonPressed = true;
+  currentColumn = 1;
+  buttonPressedLog();
+
+  return currentColumn;
+});
+$('#button2').click(() => {
+  console.log('Hello 2');
+  buttonPressed = true;
+  currentColumn = 2;
+  buttonPressedLog();
+
+  return currentColumn;
+});
+$('#button3').click(() => {
+  console.log('Hello 3');
+  buttonPressed = true;
+  currentColumn = 3;
+  buttonPressedLog();
+
+  return currentColumn;
+});
+$('#button4').click(() => {
+  console.log('Hello 4');
+  buttonPressed = true;
+  currentColumn = 4;
+  buttonPressedLog();
+
+  return currentColumn;
+});
+$('#button5').click(() => {
+  console.log('Hello 5');
+  buttonPressed = true;
+  currentColumn = 5;
+  buttonPressedLog();
+
+  return currentColumn;
+});
+$('#button6').click(() => {
+  console.log('Hello 6');
+  buttonPressed = true;
+  currentColumn = 6;
+  buttonPressedLog();
+
+  return currentColumn;
+});
+
 function buttonPressedLog() {
-    console.log("buttonPressed")
-}
+  const cell = createCell(squareColor);
+  console.log('buttonPressed');
 
+  if (currentColumn === 0) {
+    currentRow = col0Row;
+    col0Row--;
+
+    const circleid = `circle-${currentRow}-${currentColumn}`;
+    console.log(circleid);
+    color = changeColor(color);
+    const circle = createCircle(circleid);
+    $(`#${circleid}`).css('background-color', color);
+    cell.appendChild(circle);
+    boardArray[currentRow][currentColumn] = color;
+    console.log(boardArray[currentRow][currentColumn]);
+    console.log(color);
+  }
+  if (currentColumn === 1) {
+    currentRow = col1Row;
+    col1Row--;
+
+    const circleid = `circle-${currentRow}-${currentColumn}`;
+    console.log(circleid);
+    color = changeColor(color);
+    const circle = createCircle(circleid);
+    $(`#${circleid}`).css('background-color', color);
+    cell.appendChild(circle);
+    boardArray[currentRow][currentColumn] = color;
+    console.log(boardArray[currentRow][currentColumn]);
+    console.log(color);
+  }
+  if (currentColumn === 2) {
+    currentRow = col2Row;
+    col2Row--;
+
+    const circleid = `circle-${currentRow}-${currentColumn}`;
+    console.log(circleid);
+    color = changeColor(color);
+    const circle = createCircle(circleid);
+    $(`#${circleid}`).css('background-color', color);
+    cell.appendChild(circle);
+    boardArray[currentRow][currentColumn] = color;
+    console.log(boardArray[currentRow][currentColumn]);
+    console.log(color);
+  }
+  if (currentColumn === 3) {
+    currentRow = col3Row;
+    col3Row--;
+
+    const circleid = `circle-${currentRow}-${currentColumn}`;
+    console.log(circleid);
+    color = changeColor(color);
+    const circle = createCircle(circleid);
+    $(`#${circleid}`).css('background-color', color);
+    cell.appendChild(circle);
+    boardArray[currentRow][currentColumn] = color;
+    console.log(boardArray[currentRow][currentColumn]);
+    console.log(color);
+  }
+  if (currentColumn === 4) {
+    currentRow = col4Row;
+    col4Row--;
+
+    const circleid = `circle-${currentRow}-${currentColumn}`;
+    console.log(circleid);
+    color = changeColor(color);
+    const circle = createCircle(circleid);
+    $(`#${circleid}`).css('background-color', color);
+    cell.appendChild(circle);
+    boardArray[currentRow][currentColumn] = color;
+    console.log(boardArray[currentRow][currentColumn]);
+    console.log(color);
+  }
+
+  if (currentColumn === 5) {
+    currentRow = col5Row;
+    col5Row--;
+
+    const circleid = `circle-${currentRow}-${currentColumn}`;
+    console.log(circleid);
+    color = changeColor(color);
+    const circle = createCircle(circleid);
+    $(`#${circleid}`).css('background-color', color);
+    cell.appendChild(circle);
+    boardArray[currentRow][currentColumn] = color;
+    console.log(boardArray[currentRow][currentColumn]);
+    console.log(color);
+  }
+  if (currentColumn === 6) {
+    currentRow = col6Row;
+    col6Row--;
+
+    const circleid = `circle-${currentRow}-${currentColumn}`;
+    console.log(circleid);
+    color = changeColor(color);
+    const circle = createCircle(circleid);
+    $(`#${circleid}`).css('background-color', color);
+    cell.appendChild(circle);
+    boardArray[currentRow][currentColumn] = color;
+    console.log(boardArray[currentRow][currentColumn]);
+    console.log(color);
+  }
+}
 
 for (let i = 0; i < numRows; i++) {
-    const row = createRow()
-    isBlue = i % 2 === 0
-    for (let j = 0; j < numColumns; j++) {
-
-        if (isBlue) {
-            squareColor = "blue"
-        } else {
-            squareColor = "darkblue"
-        }
-        const cell = createCell(squareColor)
-        const circle = createCircle()
-        row.appendChild(cell)
-        cell.appendChild(circle)
-
-        isBlue = !isBlue
+  const row = createRow();
+  isBlue = i % 2 === 0;
+  for (let j = 0; j < numColumns; j++) {
+    if (isBlue) {
+      squareColor = 'blue';
+    } else {
+      squareColor = 'darkblue';
     }
-    board.appendChild(row)
+    const cell = createCell(squareColor);
+    const circleid = `circle-${i}-${j}`;
+    const circle = createCircle(circleid);
+
+    row.appendChild(cell);
+    cell.appendChild(circle);
+
+    isBlue = !isBlue;
+  }
+  board.appendChild(row);
 }
