@@ -1,0 +1,22 @@
+-Server
+Game logic (engine)
+
+-Client
+User Inputs i.e. button presses
+the screen state
+
+--Making a move
+-method
+-path
+connect4/engine
+-query
+-command
+Post buttonstate
+-Response
+retuns new state of the board
+
+POST /games
+
+GET /whosturn => "red"
+
+POST /game/board/cols/5
