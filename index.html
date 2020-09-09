@@ -60,6 +60,12 @@
         
 
       }
+      .win-banner {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        background-color: "color";
+      }
     </style>
   </head>
 
@@ -80,9 +86,16 @@
 
     </table>
 
-   
+  <div class="rst-btn" style="text-align:center">
+    <button id="resetBtn" >Reset Board</button>
+    <button id="resetGameBtn" >Reset Game</button>
+  
+  </div>
 
-    
+  <div id="win-banner" style="text-align:center">
+    You are WIN!
+  </div>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
     </script>
 
