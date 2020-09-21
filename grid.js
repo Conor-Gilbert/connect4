@@ -24,7 +24,6 @@ let boardArray = [
 let turn = 0;
 let redScore = 0;
 let yellowScore = 0;
-
 function changeColor() {
   if (currentRow >= 0) {
     if (color === 'red') {
