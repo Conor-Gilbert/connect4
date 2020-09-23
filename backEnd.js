@@ -1,5 +1,5 @@
 const express = require('express');
-//const axios = require('axios').default;
+//  const axios = require('axios').default;
 
 const app = express();
 app.use(express.json());
@@ -208,7 +208,7 @@ function reset(gameState) {
   gameState.col5Row = 6;
   gameState.col6Row = 6;
   gameState.turn = 0;
-  gameState.color = ' ';
+  gameState.color = 'yellow';
   gameState.win = false;
 
   return gameState;
@@ -253,5 +253,8 @@ if (process.env.NODE_ENV !== "test") {
 if (typeof module !== 'undefined') {
   module.exports = {
     buttonPressedLog,
+    app,
+    reset,
+    resetGame,
   };
 }
