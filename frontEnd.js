@@ -1,9 +1,6 @@
-function changeCircle(gameState) {
-  const circleid = `circle-${gameState.currentRow}-${gameState.currentColumn}`;
-  //  const circle = createCircle(circleid);
-  $(`#${circleid}`).css('background-color', gameState.color);
-  //  cell.appendChild(circle);
-}
+/* eslint-disable no-use-before-define */
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-console */
 
 function createRow() {
   const row = document.createElement('tr');
@@ -44,6 +41,7 @@ function generateBoard(gameState, board) {
   $('.redDisplay').text(`${gameState.redScore}`);
   $('.yellowDisplay').text(`${gameState.yellowScore}`);
   $('.win-banner').css('display', 'none');
+  $('.draw-banner').css('display', 'none');
   $('.why').css('display', 'none');
   // console.log(gameState);
   for (let i = 0; i < parseInt(gameState.numRows, 10); i++) {
@@ -58,7 +56,7 @@ function generateBoard(gameState, board) {
       }
       const cell = createCell(gameState.squareColor);
       const circleid = `circle-${i + 1}-${j + 1}`;
-      const circle = createCircle(circleid, gameState.boardArray[i + 1][j]); // i+1keepbottomrowempty
+      const circle = createCircle(circleid, gameState.boardArray[i + 1][j]);// i+1keepbottomrowempty
       row.appendChild(cell);
       cell.appendChild(circle);
 
@@ -76,6 +74,10 @@ function generateBoard(gameState, board) {
     if (gameState.redScore + gameState.yellowScore >= 7) {
       $('.why').css('display', 'flex');
     }
+  }
+  if (gameState.draw === true) {
+    console.log(gameState.win, 'draw');
+    $('.draw-banner').css('display', 'flex');
   }
   return gameState;
 }

@@ -1,6 +1,6 @@
 const request = require('supertest');
 const {
-  gameState,
+  //  gameState,
   app,
 } = require('./backEnd.js');
 
@@ -22,6 +22,7 @@ describe('POST /buttonPress', () => {
       col6Row: 6,
       color: 'red',
       win: false,
+      draw: false,
       boardArray: [
         [null, null, null, null, null, null, null], // column 0 is kept empty
         [null, null, null, null, null, null, null],
@@ -62,6 +63,7 @@ describe('POST /resetBtn', () => {
       col6Row: 6,
       color: 'yellow',
       win: false,
+      draw: false,
       boardArray: [
         [null, null, null, null, null, null, null], // column 0 is kept empty
         [null, null, null, null, null, null, null],

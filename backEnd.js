@@ -1,5 +1,8 @@
+/* eslint-disable no-use-before-define */
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-shadow */
+/* eslint-disable no-console */
 const express = require('express');
-//  const axios = require('axios').default;
 
 const app = express();
 app.use(express.json());
@@ -22,6 +25,7 @@ let gameState = {
   col6Row: 6,
   color: 'yellow',
   win: false,
+  draw: false,
   boardArray: [
     [null, null, null, null, null, null, null], // column 0 is kept empty
     [null, null, null, null, null, null, null],
@@ -86,9 +90,10 @@ function buttonPressedLog(gameState) {
       // console.log(gameState.boardArray[gameState.currentRow][gameState.currentColumn]);
       checkWin(gameState);
       gameState.turn++;
-    }
-    if (gameState.turn >= 42) {
-      console.log("it's a draw");
+      if (gameState.turn >= 42) {
+        console.log("it's a draw");
+        gameState.draw = true;
+      }
     }
   }
   // console.log(gameState.color);
@@ -118,7 +123,6 @@ function verticalWin(state) {
   }
   return gameState;
 }
-
 function horizontalWin(state) {
   const {
     currentRow,
@@ -142,7 +146,6 @@ function horizontalWin(state) {
   }
   return gameState;
 }
-
 function diagonalWin(state) {
   const {
     currentRow,
@@ -179,8 +182,6 @@ function diagonalWin(state) {
   return gameState;
 }
 function winnerWinner(gameState) {
-  // $('#win-banner').css('background-color', color);
-  // $('#win-banner').css('display', 'flex');
   console.log(gameState.color, ' is win');
   if (gameState.color === 'red') {
     gameState.redScore++;
@@ -210,10 +211,10 @@ function reset(gameState) {
   gameState.turn = 0;
   gameState.color = 'yellow';
   gameState.win = false;
+  gameState.draw = false;
 
   return gameState;
 }
-
 function resetGame(gameState) {
   reset(gameState);
   gameState.redScore = 0;
@@ -244,7 +245,7 @@ app.post('/buttonPress', (req, res) => {
   res.json(gameState);
 });
 
-if (process.env.NODE_ENV !== "test") {
+if (process.env.NODE_ENV !== 'test') {
   app.listen(8080, () => {
     console.log('server started on port 8080');
   });

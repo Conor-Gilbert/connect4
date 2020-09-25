@@ -15,6 +15,7 @@ test('buttonPressChangesRow', () => {
     col0Row: 5,
     color: 'yellow',
     win: false,
+    draw: false,
     boardArray: [
       [null, null, null, null, null, null, null],
       [null, null, null, null, null, null, null],
@@ -41,6 +42,7 @@ test('boardArrayPlacement', () => {
     col0Row: 4,
     color: 'red',
     win: false,
+    draw: false,
     boardArray: [
       [null, null, null, null, null, null, null],
       [null, null, null, null, null, null, null],
@@ -77,6 +79,7 @@ test('verticalWinCheck', () => {
     col0Row: 2,
     color: 'yellow',
     win: false,
+    draw: false,
     boardArray: [
       [null, null, null, null, null, null, null],
       [null, null, null, null, null, null, null],
@@ -111,6 +114,7 @@ test('horizontalWinCheck', () => {
     col6Row: 6,
     color: 'yellow',
     win: false,
+    draw: false,
     boardArray: [
       [null, null, null, null, null, null, null], // column 0 is kept empty
       [null, null, null, null, null, null, null],
@@ -145,6 +149,7 @@ test('diagonalWinCheck', () => {
     col6Row: 6,
     color: 'yellow',
     win: false,
+    draw: false,
     boardArray: [
       [null, null, null, null, null, null, null],
       [null, null, null, null, null, null, null],
@@ -179,6 +184,7 @@ test('diagonalTopWinCheck', () => {
     col6Row: 6,
     color: 'yellow',
     win: false,
+    draw: false,
     boardArray: [
       [null, null, null, null, null, null, null],
       [null, null, null, null, null, null, null],
@@ -214,6 +220,7 @@ describe('Check reset buttons work', () => {
     col6Row: 4,
     color: 'yellow',
     win: false,
+    draw: false,
     boardArray: [
       [null, null, null, null, null, null, null],
       [null, null, null, null, null, null, null],
@@ -244,6 +251,7 @@ describe('Check reset buttons work', () => {
       col6Row: 6,
       color: 'yellow',
       win: false,
+      draw: false,
       boardArray: [
         [null, null, null, null, null, null, null], // column 0 is kept empty
         [null, null, null, null, null, null, null],
@@ -277,6 +285,7 @@ describe('Check reset buttons work', () => {
       col6Row: 6,
       color: 'yellow',
       win: false,
+      draw: false,
       boardArray: [
         [null, null, null, null, null, null, null], // column 0 is kept empty
         [null, null, null, null, null, null, null],
@@ -293,4 +302,38 @@ describe('Check reset buttons work', () => {
     resetGame(gameState);
     expect(gameState).toStrictEqual(gameStateExpect);
   });
+});
+test('draw is detected', () => {
+  const gameState = {
+    numRows: 6, // used to generate the cells and circles of the board
+    numColumns: 7,
+    isBlue: true,
+    squareColor: 'blue',
+    currentRow: 5,
+    currentColumn: 3,
+    col0Row: 6,
+    col1Row: 6,
+    col2Row: 6,
+    col3Row: 6,
+    col4Row: 6,
+    col5Row: 6,
+    col6Row: 6,
+    color: 'yellow',
+    win: false,
+    draw: false,
+    boardArray: [
+      [null, null, null, null, null, null, null], // column 0 is kept empty
+      [null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null]], // column 7 is kept empty
+    turn: 41,
+    redScore: 3,
+    yellowScore: 6,
+  };
+  buttonPressedLog(gameState);
+  expect(gameState.draw).toBe(true);
 });

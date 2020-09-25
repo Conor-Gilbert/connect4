@@ -15,5 +15,16 @@
     },
     "rules": {
         "no-plusplus": "off"
-    }
+    },
+    "overrides": [
+        {
+            "files": ["*.test.js"],
+            "env": {
+                "jest": true
+            },
+            "globals": {
+                "fetchMock": "readonly"
+            }
+        }
+    ]
 }
