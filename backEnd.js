@@ -40,17 +40,6 @@ let gameState = {
   yellowScore: 0,
 };
 
-function changeColor(gameState) {
-  if (gameState.currentRow >= 0) {
-    if (gameState.color === 'red') {
-      gameState.color = 'yellow';
-    } else {
-      gameState.color = 'red';
-    }
-  }
-  return gameState.color;
-}
-
 function buttonPressedLog(gameState) {
   console.log('buttonPressedLog,');
 
@@ -90,7 +79,7 @@ function buttonPressedLog(gameState) {
       // console.log(gameState.boardArray[gameState.currentRow][gameState.currentColumn]);
       checkWin(gameState);
       gameState.turn++;
-      if (gameState.turn >= 42) {
+      if (gameState.turn >= 42 && gameState.win === false) {
         console.log("it's a draw");
         gameState.draw = true;
       }
@@ -108,7 +97,16 @@ function checkWin(gameState) {
     winnerWinner(gameState);
   }
 }
-
+function changeColor(gameState) {
+  if (gameState.currentRow >= 0) {
+    if (gameState.color === 'red') {
+      gameState.color = 'yellow';
+    } else {
+      gameState.color = 'red';
+    }
+  }
+  return gameState.color;
+}
 function verticalWin(state) {
   const {
     currentRow,
